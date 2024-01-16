@@ -1,0 +1,32 @@
+﻿@using Demo.Models;
+@{
+    ViewBag.Title = "ChiTietDieu";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+    
+}
+
+@{
+    var danhSachKhoan = ViewBag.DanhSachKhoan as List<Khoan>;
+}
+
+<h1>Thông tin Điều</h1>
+<h2>@ViewBag.Dieu.ma: @ViewBag.Dieu.noiDung</h2>
+@if (danhSachKhoan != null && danhSachKhoan.Count > 0)
+{
+<ul>
+    @foreach (var khoan in danhSachKhoan)
+    {
+        <a class="test"  href="@Url.Action("ChiTietKhoan", new { khoanId = khoan.id })">
+        <li>
+            <h3>@khoan.ma</h3>
+            <p class="set-fontsize">@khoan.noiDung</p>
+        </li>
+        </a>
+
+    }
+</ul>
+}
+else
+{
+    <h2>Không có khoản nào.</h2>
+}

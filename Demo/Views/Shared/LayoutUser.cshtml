@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name=“description” content=“Xử phạt vi phạm hành chính lĩnh vực lâm nghiệp”>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="~/assets/img/logoPK.jpg" type="image/x-icon">
+    <title>Hiển thị thông tin</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="~/assets/css/user.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/fonts/fontawesome-free/css/all.css">
+</head>
+<body>
+    <div class="app">
+        <header class="header">
+            <a href="~/Home/DanhSachChuong">
+                <img src="~/assets/img/logo.png" alt="Logo" class="logo">
+            </a>
+            <a href="">
+                <i>Hỗ trợ quá trình xử phạt vi phạm hành chính lĩnh vực lâm nghiệp</i>
+            </a>
+            <button type="button" class="exit">
+                <a href="~/Admin/HomeAdmin/DangNhap">Đăng nhập</a>
+            </button>
+        </header>
+
+        <div class="container">
+            <div class="content">
+                <div class="title">
+                    Quy định xử phạt hành chính trong lĩnh vực lâm nghiệp
+                </div>
+
+                <div class="title-small">
+                    Xử phạt vi phạm hành chính
+                </div>
+                <hr size="2px" color="#f19634" />
+                <div class="search">
+                    <div class="seach-title">
+                        <img src="~/assets/img/SolrVB.gif" alt="Tra cứu">
+                        <b>Xử phạt vi phạm hành chính</b>
+                    </div>
+                    @Html.Partial("_SearchBox")
+                    @*<div class="seach-bar">
+            <form method="get">
+
+                <input type="text" name="filter" value="@ViewBag.filter" class="search-input" placeholder="Nhập nội dung cần tìm....">
+            <a href="@Url.Action("TimKiem","Home",new {filter = filter})"></a>
+                    <button type="submit" class="search-button button">
+                        <b>Tìm kiếm</b>
+                    </button>
+            </form>
+        </div>*@
+                </div>
+
+                <div class="search">
+                    <div class="seach-title">
+
+                    </div>
+
+
+                </div>
+
+                <div class="title-statute">
+                    <h1>Truy cập, xâm nhập hoặc tìm cách truy cập, xâm nhập để phá hoạt, làm thay đổi dữ liệu trong Cở sở dữ liệu quốc gia về tài sản công, cấu trúc chương trình phần mền</h1>
+                </div>
+
+            </div>
+        </div>
+
+        @RenderBody()
+
+        <footer class="footer">
+            <div class="company">
+                <a href="">
+                    <img src="~/assets/img/logoPK.jpg" alt="logoPK">
+                </a>
+
+                <table class="table">
+                    <tbody>
+                        <tr>
+                            <th>Địa chỉ:</th>
+                            <td>Yên Nghĩa - Hà Đông - Hà Nội</td>
+                        </tr>
+                        <tr>
+                            <th>Điện thoại:</th>
+                            <td>024.62918118 | Hotline tuyển sinh: 094.651.1010</td>
+                        </tr>
+                        <tr>
+                            <th>E-mail:</th>
+                            <td>Info@phenikaa-uni.edu.vn</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </footer>
+    </div>
+    
+</body>
+</html>

@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Demo.Models.Chuong>
+@using Demo.Models;
+@{
+    ViewBag.Title = "DanhSachChuong";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+
+}
+
+
+
+@{
+    var danhSachChuong = ViewBag.DanhSachChuong as List<Chuong>;
+    var danhSachDieu = ViewBag.DanhSachDieu as List<Dieu>;
+}
+
+
+@foreach (var chuong in danhSachChuong)
+{
+    <h2>@chuong.ma: @chuong.noiDung</h2>
+    <ul>
+        @foreach (var dieu in danhSachDieu.Where(d => d.idChuong == chuong.id))
+        {
+            <a class="test" href="@Url.Action("ChiTietDieu", new { dieuId = dieu.id})">
+            <li style="font-size:17px">@dieu.ma: @dieu.noiDung</li> </a>
+        }
+    </ul>
+}

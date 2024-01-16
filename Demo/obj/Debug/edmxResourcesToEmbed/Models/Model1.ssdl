@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="account">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="100" />
+    <Property Name="password" Type="varchar" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="Chuong">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ma" Type="nvarchar" MaxLength="50" />
+    <Property Name="noiDung" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="Dieu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idChuong" Type="int" />
+    <Property Name="ma" Type="nvarchar" MaxLength="50" />
+    <Property Name="noiDung" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="Khoan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="idDieu" Type="int" />
+    <Property Name="ma" Type="nvarchar" MaxLength="30" />
+    <Property Name="noiDung" Type="nvarchar" MaxLength="4000" />
+    <Property Name="MXPTT" Type="money" />
+    <Property Name="MXPTD" Type="money" />
+  </EntityType>
+  <Association Name="FK__Dieu__idChuong__73BA3083">
+    <End Role="Chuong" Type="Self.Chuong" Multiplicity="0..1" />
+    <End Role="Dieu" Type="Self.Dieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chuong">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Dieu">
+        <PropertyRef Name="idChuong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Khoan__idDieu__74AE54BC">
+    <End Role="Dieu" Type="Self.Dieu" Multiplicity="0..1" />
+    <End Role="Khoan" Type="Self.Khoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dieu">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Khoan">
+        <PropertyRef Name="idDieu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TestModelStoreContainer">
+    <EntitySet Name="account" EntityType="Self.account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Chuong" EntityType="Self.Chuong" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dieu" EntityType="Self.Dieu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Khoan" EntityType="Self.Khoan" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__Dieu__idChuong__73BA3083" Association="Self.FK__Dieu__idChuong__73BA3083">
+      <End Role="Chuong" EntitySet="Chuong" />
+      <End Role="Dieu" EntitySet="Dieu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Khoan__idDieu__74AE54BC" Association="Self.FK__Khoan__idDieu__74AE54BC">
+      <End Role="Dieu" EntitySet="Dieu" />
+      <End Role="Khoan" EntitySet="Khoan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

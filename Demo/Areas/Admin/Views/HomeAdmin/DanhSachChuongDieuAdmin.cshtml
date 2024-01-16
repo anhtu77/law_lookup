@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Demo.Models.Chuong>
+@using Demo.Models;
+
+@{
+    ViewBag.Title = "DanhSachChuongDieuAdmin";
+    Layout = "~/Areas/Admin/Views/Shared/layoutadmin.cshtml";
+}
+
+@{
+    var danhSachChuong = ViewBag.DanhSachChuong as List<Chuong>;
+    var danhSachDieu = ViewBag.DanhSachDieu as List<Dieu>;
+}
+
+<button style="margin-top:10px" class="custom-button">
+    <a href="~/Admin/HomeAdmin/ThemMoiChuong">Thêm mới chương</a>
+</button>
+<button class="custom-button">
+    <a href="~/Admin/HomeAdmin/ThemMoiDieu">Thêm mới điều</a>
+</button>
+<button class="custom-button">
+    <a href="~/Admin/HomeAdmin/ThemMoiKhoan">Thêm mới khoản</a>
+</button>
+
+@foreach (var chuong in danhSachChuong)
+{
+    <h2>@chuong.ma: @chuong.noiDung  <span style="float:right"> @Html.ActionLink("Sửa", "CapNhatChuong", new { id = chuong.id }) |  @Html.ActionLink("Xóa", "XoaChuong", new { id = chuong.id }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa chương này? Tất cả dữ liệu của chương này cũng sẽ bị mất');" }) </span>  </h2>
+    <ul>
+        @foreach (var dieu in danhSachDieu.Where(d => d.idChuong == chuong.id))
+        {
+
+            <a class="test" href="@Url.Action("ChiTietDieuAdmin", new { dieuId = dieu.id})">
+            <li style="font-size:17px">@dieu.ma: @dieu.noiDung</li> </a>
+
+        }
+    </ul>
+}

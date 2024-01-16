@@ -1,0 +1,39 @@
+﻿@using Demo.Models;
+@{
+    ViewBag.Title = "ChiTietDieuAdmin";
+    Layout = "~/Areas/Admin/Views/Shared/layoutadmin.cshtml";
+}
+
+
+@{
+    var danhSachKhoan = ViewBag.DanhSachKhoan as List<Khoan>;
+}
+<button style="margin-top:10px" class="custom-button">
+    <a href="~/Admin/HomeAdmin/ThemMoiDieu">Thêm mới điều</a>
+</button>
+<h1>Thông tin Điều</h1>
+
+
+<h2>@ViewBag.Dieu.ma: @ViewBag.Dieu.noiDung <span style="float:right">@Html.ActionLink("Sửa", "CapNhatDieu", new { id = ViewBag.Dieu.id }) | @Html.ActionLink("Xóa", "XoaDieu", new { id = ViewBag.Dieu.id }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa điều này?Tất cả khoản trong điều này cũng sẽ mất');" })</span></h2>
+@if (danhSachKhoan != null && danhSachKhoan.Count > 0)
+{
+<ul>
+    @foreach (var khoan in danhSachKhoan)
+    {
+        <a class="test" href="@Url.Action("ChiTietKhoanAdmin", new { khoanId = khoan.id })">
+        <li>
+            <h3>
+                @khoan.ma
+            </h3>
+            <p class="set-fontsize">@khoan.noiDung</p>
+        </li>
+        </a>
+       
+
+    }
+</ul>
+}
+else
+{
+    <h2>Không có khoản nào.</h2>
+}

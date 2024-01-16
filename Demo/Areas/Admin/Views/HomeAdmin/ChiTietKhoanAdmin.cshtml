@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "ChiTietKhoanAdmin";
+    Layout = "~/Areas/Admin/Views/Shared/layoutadmin.cshtml";
+}
+
+<button style="margin-top:10px" class="custom-button">
+    <a href="~/Admin/HomeAdmin/ThemMoiKhoan">Thêm mới khoản</a>
+</button>
+<h1 style="margin-left:40%">Chi tiết khoản</h1>
+<div class="center set-fontsize">
+    <span style="margin-left:-88px">
+        @Html.ActionLink("Sửa thông tin khoản", "CapNhatKhoan", new { id = ViewBag.Khoan.id }) | @Html.ActionLink("Xóa khoản", "XoaKhoan", new { id = ViewBag.Khoan.id }, new { onclick = "return confirm('Bạn có chắc chắn muốn xóa khoản này?');" })
+    </span>
+</div>
+<table class="content-statute">
+    <thead>
+        <tr>
+            <th>@ViewBag.Chuong.ma</th>
+            <td>@ViewBag.Chuong.noiDung</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th> @ViewBag.Dieu.ma</th>
+            <td>
+                @ViewBag.Dieu.noiDung
+            </td>
+        </tr>
+
+        <tr>
+            <th>@ViewBag.Khoan.ma</th>
+            <td>
+                @ViewBag.Khoan.noiDung
+            </td>
+        </tr>
+
+        <tr>
+            <th>Mức xử phạt tối thiểu (VND)</th>
+            <td>
+                @if (ViewBag.Khoan.MXPTT != null)
+                {
+                    <p>@ViewBag.Khoan.MXPTT.ToString("N0")</p>
+                }
+            </td>
+        </tr>
+        <tr>
+            <th>Mức xử phạt tối đa (VND)</th>
+            <td>
+                @if (ViewBag.Khoan.MXPTD != null)
+                {
+                    <p>@ViewBag.Khoan.MXPTD.ToString("N0")</p>
+                }
+            </td>
+        </tr>
+
+        <tr>
+            <th>Mức xử phạt trung bình (VND)</th>
+            <td>
+                @if (ViewBag.Khoan.MXPTT != null && ViewBag.Khoan.MXPTD != null)
+                {
+                    <p>@(((ViewBag.Khoan.MXPTT + ViewBag.Khoan.MXPTD) / 2).ToString("N0"))</p>
+                }
+            </td>
+        </tr>
+    </tbody>
+</table>
+<style>
+    .center {
+        display: flex;
+        justify-content: center;
+   }
+</style>

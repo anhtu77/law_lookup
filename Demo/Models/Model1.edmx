@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TestModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="100" />
+          <Property Name="password" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Chuong">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ma" Type="nvarchar" MaxLength="50" />
+          <Property Name="noiDung" Type="nvarchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Dieu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idChuong" Type="int" />
+          <Property Name="ma" Type="nvarchar" MaxLength="50" />
+          <Property Name="noiDung" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Khoan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idDieu" Type="int" />
+          <Property Name="ma" Type="nvarchar" MaxLength="30" />
+          <Property Name="noiDung" Type="nvarchar" MaxLength="4000" />
+          <Property Name="MXPTT" Type="money" />
+          <Property Name="MXPTD" Type="money" />
+        </EntityType>
+        <Association Name="FK__Dieu__idChuong__73BA3083">
+          <End Role="Chuong" Type="Self.Chuong" Multiplicity="0..1" />
+          <End Role="Dieu" Type="Self.Dieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chuong">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Dieu">
+              <PropertyRef Name="idChuong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Khoan__idDieu__74AE54BC">
+          <End Role="Dieu" Type="Self.Dieu" Multiplicity="0..1" />
+          <End Role="Khoan" Type="Self.Khoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dieu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Khoan">
+              <PropertyRef Name="idDieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestModelStoreContainer">
+          <EntitySet Name="account" EntityType="Self.account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chuong" EntityType="Self.Chuong" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dieu" EntityType="Self.Dieu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Khoan" EntityType="Self.Khoan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Dieu__idChuong__73BA3083" Association="Self.FK__Dieu__idChuong__73BA3083">
+            <End Role="Chuong" EntitySet="Chuong" />
+            <End Role="Dieu" EntitySet="Dieu" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Khoan__idDieu__74AE54BC" Association="Self.FK__Khoan__idDieu__74AE54BC">
+            <End Role="Dieu" EntitySet="Dieu" />
+            <End Role="Khoan" EntitySet="Khoan" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="account">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Chuong">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="noiDung" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Dieux" Relationship="Self.FK__Dieu__idChuong__3C69FB99" FromRole="Chuong" ToRole="Dieu" />
+        </EntityType>
+        <EntityType Name="Dieu">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idChuong" Type="Int32" />
+          <Property Name="ma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="noiDung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Chuong" Relationship="Self.FK__Dieu__idChuong__3C69FB99" FromRole="Dieu" ToRole="Chuong" />
+          <NavigationProperty Name="Khoans" Relationship="Self.FK__Khoan__idDieu__3D5E1FD2" FromRole="Dieu" ToRole="Khoan" />
+        </EntityType>
+        <EntityType Name="Khoan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idDieu" Type="Int32" />
+          <Property Name="ma" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="noiDung" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="MXPTT" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MXPTD" Type="Decimal" Precision="19" Scale="4" />
+          <NavigationProperty Name="Dieu" Relationship="Self.FK__Khoan__idDieu__3D5E1FD2" FromRole="Khoan" ToRole="Dieu" />
+        </EntityType>
+        <Association Name="FK__Dieu__idChuong__3C69FB99">
+          <End Role="Chuong" Type="Self.Chuong" Multiplicity="0..1" />
+          <End Role="Dieu" Type="Self.Dieu" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chuong">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Dieu">
+              <PropertyRef Name="idChuong" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Khoan__idDieu__3D5E1FD2">
+          <End Role="Dieu" Type="Self.Dieu" Multiplicity="0..1" />
+          <End Role="Khoan" Type="Self.Khoan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dieu">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Khoan">
+              <PropertyRef Name="idDieu" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TestEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="accounts" EntityType="Self.account" />
+          <EntitySet Name="Chuongs" EntityType="Self.Chuong" />
+          <EntitySet Name="Dieux" EntityType="Self.Dieu" />
+          <EntitySet Name="Khoans" EntityType="Self.Khoan" />
+          <AssociationSet Name="FK__Dieu__idChuong__3C69FB99" Association="Self.FK__Dieu__idChuong__3C69FB99">
+            <End Role="Chuong" EntitySet="Chuongs" />
+            <End Role="Dieu" EntitySet="Dieux" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Khoan__idDieu__3D5E1FD2" Association="Self.FK__Khoan__idDieu__3D5E1FD2">
+            <End Role="Dieu" EntitySet="Dieux" />
+            <End Role="Khoan" EntitySet="Khoans" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TestModelStoreContainer" CdmEntityContainer="TestEntities1">
+          <EntitySetMapping Name="accounts">
+            <EntityTypeMapping TypeName="TestModel.account">
+              <MappingFragment StoreEntitySet="account">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chuongs">
+            <EntityTypeMapping TypeName="TestModel.Chuong">
+              <MappingFragment StoreEntitySet="Chuong">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="ma" ColumnName="ma" />
+                <ScalarProperty Name="noiDung" ColumnName="noiDung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dieux">
+            <EntityTypeMapping TypeName="TestModel.Dieu">
+              <MappingFragment StoreEntitySet="Dieu">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idChuong" ColumnName="idChuong" />
+                <ScalarProperty Name="ma" ColumnName="ma" />
+                <ScalarProperty Name="noiDung" ColumnName="noiDung" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Khoans">
+            <EntityTypeMapping TypeName="TestModel.Khoan">
+              <MappingFragment StoreEntitySet="Khoan">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idDieu" ColumnName="idDieu" />
+                <ScalarProperty Name="ma" ColumnName="ma" />
+                <ScalarProperty Name="noiDung" ColumnName="noiDung" />
+                <ScalarProperty Name="MXPTT" ColumnName="MXPTT" />
+                <ScalarProperty Name="MXPTD" ColumnName="MXPTD" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

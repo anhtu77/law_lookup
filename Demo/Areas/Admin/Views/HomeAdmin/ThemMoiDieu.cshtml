@@ -1,0 +1,42 @@
+﻿@model Demo.Models.Dieu
+
+@{
+    ViewBag.Title = "ThemMoiDieu";
+    Layout = "~/Areas/Admin/Views/Shared/layoutadmin.cshtml";
+    Demo.Models.TestEntities1 db = new Demo.Models.TestEntities1();
+}
+
+<div class="custom-container">
+    <h2>Thêm mới điều</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="custom-form-group">
+            <label for="idChuong">Chương</label>
+            <select class="form-control" name="idChuong">
+                @foreach (var chuong in db.Chuongs.ToList())
+                {
+                    <option value="@chuong.id">@chuong.ma</option>
+                }
+            </select>
+        </div>
+
+        <div class="custom-form-group">
+            <label for="ma">Điều</label>
+            @Html.EditorFor(model => model.ma, new { htmlAttributes = new { @class = "form-control", id = "ma" } })
+            @Html.ValidationMessageFor(model => model.ma, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="custom-form-group">
+            <label for="noiDung">Nội dung</label>
+            @Html.TextAreaFor(model => model.noiDung, new { htmlAttributes = new { @class = "form-control", id = "noiDung" } })
+            @Html.ValidationMessageFor(model => model.noiDung, "", new { @class = "text-danger" })
+        </div>
+
+        <div class="custom-form-group">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    }
+</div>

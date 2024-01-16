@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Demo.Models.Khoan>
+@using Demo.Models;
+@{
+    ViewBag.Title = "KetQuaTimKiem";
+    Layout = "~/Views/Shared/LayoutUser.cshtml";
+    TestEntities1 db = new TestEntities1();
+    List<Khoan> listKhoan = db.Khoans.ToList();
+}
+
+
+
+
+<h1>Kết quả tìm kiếm cho "@ViewBag.Filter"</h1>
+
+@if (Model != null)
+{
+    foreach (var khoan in Model)
+    {
+        <a class="test"  href="@Url.Action("ChiTietKhoan", new { khoanId = khoan.id })">
+        <li>
+
+        <h2>@khoan.ma</h2>
+        <p class="set-fontsize">@khoan.noiDung</p>
+        </li>
+       </a>
+    }
+}
+else
+{
+    <p>Không tìm thấy kết quả.</p>
+}

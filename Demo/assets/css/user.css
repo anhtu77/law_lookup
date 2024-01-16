@@ -1,0 +1,272 @@
+html {
+    font-size: 62.5%;
+    line-height: 1.6rem;
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+* {
+    text-decoration: none;
+}
+
+.app {
+    width: 1030px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+
+.button {
+    background-color: #FDCE3E;
+    border: 1px solid #E5A716;
+    float: right;
+    cursor: pointer;
+}
+
+.header {
+    width: 1030px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0 auto;
+    position: relative;
+    background-image: url(https://cdn.thuvienphapluat.vn/images/bg_head_tvpl.gif);
+    box-shadow: 0px 6px 7px #AAA;
+}
+
+    .header a i {
+        text-decoration: none;
+        position: absolute;
+        font-size: 16px;
+        color: #ff0000;
+        left: 88px;
+        top: 52px;
+        cursor: pointer;
+    }
+
+.exit {
+    width: 90px;
+    height: 28px;
+    font-size: 16px;
+    background-color: #f19634;
+    float: right;
+    cursor: pointer;
+    border: none;
+    margin-top: 17px;
+}
+
+
+.container {
+    display: flex;
+}
+
+.content {
+    border: 1px solid #c8d4db;
+    margin-top: 25px;
+    border-radius: 8px;
+    padding-bottom: 22px;
+    display: block;
+}
+
+.title {
+    font-weight: 500;
+    margin: 0;
+    padding: 20px 0 10px;
+    font-size: 20px;
+    text-align: center;
+    color: #f19634;
+    text-transform: uppercase;
+}
+
+.title-small {
+    margin-left: 13px;
+    width: 150px;
+    padding: 4px;
+    color: #ffffff;
+    background-color: #f19634;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    font-size: 12px;
+    box-shadow: 1px 0px 1px #949090;
+}
+
+.content hr {
+    margin: 0;
+}
+
+.search {
+    padding: 13px 13px 0;
+}
+
+.seach-title, .seach {
+    display: flex;
+}
+
+    .seach-title b {
+        margin-top: 4px;
+        font-size: 15px;
+    }
+
+    .seach-title img {
+        width: 98px;
+        height: 24px;
+    }
+
+.seach-bar-title img {
+    max-width: 95px;
+    height: auto;
+}
+
+.seach-bar {
+    margin-top: 3px;
+    height: 40px;
+    border: 1px solid #C1CAD2;
+    background-image: url(https://cdn.thuvienphapluat.vn/images/spr_masthd_slate_20100628_ltr.png);
+    background-repeat: repeat-x;
+}
+
+.search-input {
+    width: 806px;
+    height: 28px;
+    margin: 4px 0 4px 5px;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+.search-button {
+    width: 128px;
+    height: 34px;
+    margin: 3px 7px;
+    font-size: 14px;
+}
+
+.title-statute {
+    margin-top: 20px;
+    padding: 5px 10px;
+    background: #ecedef;
+}
+
+    .title-statute h1 {
+        margin: 0px;
+        line-height: 1.2;
+
+    }
+
+.content-statute {
+    margin-top: 20px;
+    margin-left: 17px;
+    padding: 20px;
+    width: 96%;
+    border-collapse: collapse;
+}
+
+    .content-statute td, .content-statute th {
+        padding: 25px 18px;
+        border: 1px solid #ddd;
+        font-size: 18px;
+        line-height: 1.4;
+    }
+
+.footer {
+    margin-top: 200px;
+    border-top: 3px solid #F89B1A;
+    background-color: #f8f4f3;
+    padding: 15px 10px 20px 15px;
+}
+
+.company img {
+    width: 57px;
+    height: 57px;
+    margin-bottom: 5px;
+    margin-left: 90px;
+}
+
+.table {
+    text-align: left;
+    font-size: 15px;
+}
+
+    .table td {
+        padding-left: 10px;
+    }
+
+.test {
+    color: black;
+}
+
+    .test li {
+        list-style: none;
+        margin-top: 5px;
+    }
+
+        .test li:hover {
+            color: #515761;
+        }
+
+.set-fontsize {
+    font-size: 17px;
+}
+
+.custom-container {
+    max-width: 1028px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.custom-form-group {
+    margin-bottom: 15px;
+}
+
+.custom-form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+.custom-form-group input[type="text"],
+.custom-form-group textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+.custom-form-group textarea {
+        height: 150px; /* Thay đổi kích thước chiều cao của ô điền nội dung */
+        resize: vertical; /* Cho phép điều chỉnh kích thước theo chiều dọc */
+    }
+
+.custom-form-group input[type="submit"] {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        cursor: pointer;
+}
+.custom-form-group select {
+        height: 38px; /* Thay đổi chiều cao của select */
+        width: 100%;
+        text-align: center;
+        font-size: 15px;
+        z-index: 0;
+}
+.custom-button {
+        display: inline-block;
+        margin: 10px;
+        padding: 8px 16px;
+        border: none;
+        border-radius: 4px;
+        background-color: #4caf50;
+        color: white;
+        text-align: center;
+        text-decoration: none;
+        font-size: 16px;
+        cursor: pointer;
+}
+
+.custom-button:hover {
+            background-color: #45a049;
+}
+.custom-button a {
+	color: yellow;
+}

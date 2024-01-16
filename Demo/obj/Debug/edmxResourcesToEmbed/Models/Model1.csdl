@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TestModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="account">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="password" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Chuong">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="noiDung" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Dieux" Relationship="Self.FK__Dieu__idChuong__3C69FB99" FromRole="Chuong" ToRole="Dieu" />
+  </EntityType>
+  <EntityType Name="Dieu">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idChuong" Type="Int32" />
+    <Property Name="ma" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="noiDung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Chuong" Relationship="Self.FK__Dieu__idChuong__3C69FB99" FromRole="Dieu" ToRole="Chuong" />
+    <NavigationProperty Name="Khoans" Relationship="Self.FK__Khoan__idDieu__3D5E1FD2" FromRole="Dieu" ToRole="Khoan" />
+  </EntityType>
+  <EntityType Name="Khoan">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="idDieu" Type="Int32" />
+    <Property Name="ma" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="noiDung" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+    <Property Name="MXPTT" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="MXPTD" Type="Decimal" Precision="19" Scale="4" />
+    <NavigationProperty Name="Dieu" Relationship="Self.FK__Khoan__idDieu__3D5E1FD2" FromRole="Khoan" ToRole="Dieu" />
+  </EntityType>
+  <Association Name="FK__Dieu__idChuong__3C69FB99">
+    <End Role="Chuong" Type="Self.Chuong" Multiplicity="0..1" />
+    <End Role="Dieu" Type="Self.Dieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chuong">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Dieu">
+        <PropertyRef Name="idChuong" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__Khoan__idDieu__3D5E1FD2">
+    <End Role="Dieu" Type="Self.Dieu" Multiplicity="0..1" />
+    <End Role="Khoan" Type="Self.Khoan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dieu">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Khoan">
+        <PropertyRef Name="idDieu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TestEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="accounts" EntityType="Self.account" />
+    <EntitySet Name="Chuongs" EntityType="Self.Chuong" />
+    <EntitySet Name="Dieux" EntityType="Self.Dieu" />
+    <EntitySet Name="Khoans" EntityType="Self.Khoan" />
+    <AssociationSet Name="FK__Dieu__idChuong__3C69FB99" Association="Self.FK__Dieu__idChuong__3C69FB99">
+      <End Role="Chuong" EntitySet="Chuongs" />
+      <End Role="Dieu" EntitySet="Dieux" />
+    </AssociationSet>
+    <AssociationSet Name="FK__Khoan__idDieu__3D5E1FD2" Association="Self.FK__Khoan__idDieu__3D5E1FD2">
+      <End Role="Dieu" EntitySet="Dieux" />
+      <End Role="Khoan" EntitySet="Khoans" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,69 @@
+﻿@model Demo.Models.Khoan
+
+@{
+    ViewBag.Title = "ThemMoiKhoan";
+    Layout = "~/Areas/Admin/Views/Shared/layoutadmin.cshtml";
+    Demo.Models.TestEntities1 db = new Demo.Models.TestEntities1();
+}
+
+<div class="custom-container">
+    <h2>Thêm mới khoản</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+        <div class="custom-form-group">
+            <label>Điều</label>
+
+            <select class="form-control" name="idDieu">
+                @foreach (var dieu in db.Dieux.ToList())
+                {
+                    <option value="@dieu.id" @Html.Raw(dieu.id == Model.idDieu ? "selected" : "")>@dieu.ma</option>
+                }
+            </select>
+
+        </div>
+
+        <div class="custom-form-group">
+            <label>Khoản</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ma, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ma, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="custom-form-group">
+            <label>Mức xử phạt tối thiểu</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MXPTT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MXPTT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="custom-form-group">
+            <label>Mức xử phạt tối đa</label>
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.MXPTD, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.MXPTD, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="custom-form-group">
+            <label for="noiDung">Nội dung</label>
+
+            @Html.TextAreaFor(model => model.noiDung, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.noiDung, "", new { @class = "text-danger" })
+
+        </div>
+
+
+        <div class="custom-form-group">
+
+            <input type="submit" value="Create" class="btn btn-default" />
+
+        </div>
+
+    }
+</div>
