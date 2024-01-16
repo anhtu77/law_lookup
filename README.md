@@ -1,8 +1,8 @@
-#LegalSearch Website
-##Overview
+LegalSearch Website
+Overview
 The LegalSearch website is a comprehensive platform designed to streamline access to legal information. It provides a user-friendly interface for searching and retrieving relevant legal statutes, regulations, and documents. Whether you're a legal professional, student, or someone seeking legal information, LegalSearch is your go-to resource.
 
-##Features
+Features
 1. Search Functionality
 LegalSearch offers a robust search engine, enabling users to search for specific legal provisions, statutes, or regulations. The search results are displayed in a clear and organized manner, facilitating easy retrieval of information.
 
